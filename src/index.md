@@ -53,7 +53,13 @@ Pokémon rom.
 
 <pre><code>> <span class="sh-comment"># Set Treeckos first type to be Fire.</span>
 > <span class="sh-comment"># This will make Treecko a Fire/Grass type.</span>
-> echo <span class="sh-string">'.pokemons[277].types[0]=Fire'</span> | tm35-apply emerald.gba
+>
+> <span class="sh-comment"># First, let's figure out which type is the Fire type.</span>
+> tm35-load emerald.gba | grep <span class="sh-string">'=FIRE$'</span>
+.types[10].name=FIRE
+
+> <span class="sh-comment"># Alright, 10 is Fire. Next let's change Treeckos typing.</span>
+> echo <span class="sh-string">'.pokemons[277].types[0]=10'</span> | tm35-apply emerald.gba
 </code></pre>
 
 ![randomizer](/images/treecko-fire-grass.png)
